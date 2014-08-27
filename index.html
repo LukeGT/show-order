@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="show-order.js"></script>
+    <style type="text/css">
+    table {
+        table-layout: fixed;
+        width: 100%;
+        margin-top: 200px;
+    }
+    tr:first-child th {
+        transform: rotate(-90deg);
+        transform-origin: 10px 50%;
+        text-align: left;
+        vertical-align: bottom;
+    }
+    th, td {
+        white-space: nowrap;
+        width: 20px;
+        text-align: center;
+    }
+    td.tick {
+        background-color: #282;
+    }
+    th:first-child {
+        width: 200px;
+        text-align: right;
+    }
+    </style>
+</head>
+<body>
+    <button id="go">Go</button>
+</body>
+</html>

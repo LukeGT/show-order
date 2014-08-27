@@ -2,9 +2,6 @@
 # Luke Tsekouras
 # luke.tsekouras@gmail.com
 
-crypto = require 'crypto'
-# Worker = require('webworker-threads').Worker;
-
 items = [
     name: '169'
     tags: [ 'crude', 'pun', 'sex' ]
@@ -214,7 +211,8 @@ items = [
         'Nafiul Haque': before: 5
         'Christina Truong': before: 5
         'Octavia Soegyono': before: 5
-        'Sylvia Chin Rhi Gordon': before: 5
+        'Sylvia Chin': before: 5
+        'Rhi Gordon': before: 5
 ]
 
 Array.prototype.clone = -> @slice 0
@@ -223,11 +221,10 @@ random_int = (from, to) -> Math.floor Math.random() * (to - from + 1) + from
 random_choice = (list) -> list[Math.floor(Math.random() * list.length)]
 
 hash_object = (object) ->
-    string = JSON.stringify(object)
-    return crypto.createHash('md5').update(string).digest('base64')
+    return JSON.stringify(object)
 
 tag_weights =
-    musical: 2
+    musical: 10
 
 evaluators =
 
@@ -265,9 +262,10 @@ evaluators =
             after = after_index - order_index - 1
 
             weight = tag_weights[tag] ? 1
+            max_score = weight * 5
 
-            score += before * weight
-            score += after * weight
+            score += Math.min before * weight, max_score
+            score += Math.min after * weight, max_score
 
         return score
 
@@ -319,12 +317,49 @@ store_order = (bests, order, score) ->
         order: order
         score: score
 
+order_template = (order) ->
+
+    cast = {}
+    for item in order
+        for name of item.actors
+            cast[name] = true
+
+    cast_list = (name for name of cast)
+    cast_list.sort()
+
+    $table = $('<table>')
+
+    $tr = $('<tr>')
+    $tr.append($('<th>'))
+    for name in cast_list
+        $tr.append($('<th>').text(name))
+    $table.append($tr)
+
+    for item in order
+
+        $tr = $('<tr>')
+
+        $tr.append($('<th>').text(item.name))
+
+        for name in cast_list
+
+            $tr.append($('<td>').addClass(
+                if is_in_item(name, item)
+                    'tick'
+                else
+                    'cross'
+            ))
+
+        $table.append($tr)
+
+    return $table
+
 # Simulated annealing
 
 order = items.clone()
 score = evaluate(order)
 
-starting_temperature = 10000
+starting_temperature = 1000
 cooling_factor = 0.95
 repetitions = 25
 bests = {}
@@ -363,4 +398,8 @@ for repetition in [1..repetitions]
 best_ranked = (order for hash, order of bests).sort (a, b) -> a.score - b.score
 
 for order_score in best_ranked
-    console.log order_score.order, hash_object(order_score.order), order_score.score
+    console.log order_score.order, order_score.score
+
+$ ->
+    $table = order_template(best_ranked[best_ranked.length-1].order)
+    $('body').append($table)
