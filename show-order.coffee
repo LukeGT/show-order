@@ -3,15 +3,18 @@
 # luke.tsekouras@gmail.com
 
 crypto = require 'crypto'
+# Worker = require('webworker-threads').Worker;
 
 items = [
     name: '169'
+    tags: [ 'crude', 'pun', 'sex' ]
     actors:
         'Henry Nguyen': before: 5
         'Nevin Lazarus': before: 5
         'Sylvia Chin': before: 5
 ,
     name: 'A Preset Occurrence'
+    tags: [ 'satire' ]
     actors:
         'Nicola Sentinella': before: 5
         'Sylvia Chin': before: 5
@@ -20,12 +23,14 @@ items = [
         'Octavia Soegyono': before: 5
 ,
     name: 'An Awkward Purchase'
+    tags: [ 'crude', 'sex' ]
     actors:
         'Caroline Cham': before: 5
         'Pierre Estephan': before: 5
         'Nafiul Haque': before: 5
 ,
     name: 'Antiques Roadshow'
+    tags: [ 'crazy' ]
     actors:
         'Alex Worsley': before: 5
         'Ben Pinto': before: 5
@@ -33,33 +38,39 @@ items = [
         'Yingran Sun': before: 5
 ,
     name: 'Bro'
+    tags: [ 'gay' ]
     actors:
         'Henry Nguyen': before: 5
         'Nafiul Haque': before: 5
 ,
     name: 'Death Star Budget'
+    tags: [ 'satire' ]
     actors:
         'Octavia Soegyono': before: 5
         'Vincent Tran': before: 5
         'Ben Pinto': before: 5
 ,
     name: 'Disk Jock'
+    tags: [ 'crazy' ]
     actors:
         'Louis Sammuels': before: 5
         'Henry Nguyen': before: 5
 ,
     name: 'Fourth Wall'
+    tags: [ 'crazy' ]
     actors:
         'Sherman Du': before: 5
         'Vinbob Tran': before: 5
 ,
     name: 'Frape'
+    tags: [ 'crazy', 'gay', 'religion' ]
     actors:
         'Raj Kapoor': before: 5
         'Ben Pinto': before: 5
         'Nevin Lazarus': before: 5
 ,
     name: 'Girl\'s Night Out'
+    tags: [ 'punch', 'sex' ]
     actors:
         'Yingran Sun': before: 5
         'Kitty Lee': before: 5
@@ -67,33 +78,39 @@ items = [
         'Daniel Lyons': before: 5
 ,
     name: 'Grandma in the way'
+    tags: [ 'punch' ]
     actors:
         'Emmanuel Berkowicz': before: 5
         'Nicola Sentinella': before: 5
         'Emily Webster': before: 5
 ,
     name: 'HECS Games'
+    tags: [ 'satire' ]
     actors:
         'Vanessa Ung': before: 5
         'Daniel Lyons': before: 5
 ,
     name: 'I\'d like to return my kid'
+    tags: [ 'pun', 'punch' ]
     actors:
         'Michael Nam Lee': before: 5
         'Emily Webster': before: 5
 ,
     name: 'Love in the time of Coding'
+    tags: [ 'punch', 'sex' ]
     actors:
         'Michael Nam Lee': before: 5
         'Kitty Lee': before: 5
         'Christina Truong': before: 5
 ,
     name: 'Modern Commandments'
+    tags: [ 'satire', 'religion' ]
     actors:
         'Sherman Du': before: 5
         'Vincent Tran': before: 5
 ,
     name: 'Princess Missing'
+    tags: [ 'punch', 'satire' ]
     actors:
         'Vanessa Ung': before: 5
         'Louis Sammuels': before: 5
@@ -102,12 +119,14 @@ items = [
         'Andrew Ha': before: 5
 ,
     name: 'Rock and a Hard Place'
+    tags: [ 'pun' ]
     actors:
         'Alex Worsley': before: 5
         'Michael Nam Lee': before: 5
         'Sylvia Chin': before: 5
 ,
     name: 'Second-hand Salesman'
+    tags: [ 'crazy' ]
     actors:
         'Daniel Lyons': before: 5
         'Henry Nguyen': before: 5
@@ -117,17 +136,20 @@ items = [
         'Michael Nam Lee': before: 5
 ,
     name: 'Sunday School'
+    tags: [ 'pun', 'punch', 'religion' ]
     actors:
         'Holly Shuttleworth': before: 5
         'Vincent Tran': before: 5
         'Andrew Ha': before: 5
 ,
     name: 'Terra Nullius'
+    tags: [ 'punch', 'crazy' ]
     actors:
         'Nevin Lazarus': before: 5
         'Christina Truong': before: 5
 ,
     name: 'That Poor Kitty'
+    tags: [ 'crazy', 'sex' ]
     actors:
         'Kitty Lee': before: 5
         'Nafiul Haque': before: 5
@@ -135,16 +157,19 @@ items = [
         'Vincent Tran': before: 5
 ,
     name: 'The Leak'
+    tags: [ 'punch' ]
     actors:
         'Emmanuel Berkowicz': before: 5
         'Caroline Cham': before: 5
 ,
     name: 'The Macabre Family'
+    tags: [ 'black', 'crude', 'sex' ]
     actors:
         'Lucas Pickup': before: 5
         'Nicola Sentinella': before: 5
 ,
     name: 'Under Construction'
+    tags: [ 'crazy' ]
     actors:
         'Lucas Pickup': before: 5
         'Rhi Gordon': before: 5
@@ -152,6 +177,7 @@ items = [
         'Vinbob Tran': before: 5
 ,
     name: 'Would You Kindly'
+    tags: [ 'crazy' ]
     actors:
         'Emily Webster': before: 5
         'Alex Worsley': before: 5
@@ -159,38 +185,37 @@ items = [
         'Sylvia Chin': before: 5
 ,
     name: 'Happy'
+    tags: [ 'musical' ]
     actors:
-        'Nicola Sentinella': before: 2
-        'Sherman Du': before: 2
-        'Vincent Tran': before: 2
-        'Caroline Cham': before: 2
-        'Vanessa Ung': before: 2
+        'Nicola Sentinella': before: 5
+        'Sherman Du': before: 5
+        'Vincent Tran': before: 5
+        'Caroline Cham': before: 5
+        'Vanessa Ung': before: 5
 ,
     name: 'Africa'
+    tags: [ 'musical' ]
     actors:
-        'Yingran Sun': before: 2
-        'Kitty Lee': before: 2
-        'Octavia Soegyono': before: 2
-        'Rhi Gordon': before: 2
-        'Holly Shuttleworth': before: 2
-        'Emily Webster': before: 2
-        'Pierre Estephan': before: 2
-        'Vinbob Tran': before: 2
+        'Yingran Sun': before: 5
+        'Kitty Lee': before: 5
+        'Octavia Soegyono': before: 5
+        'Rhi Gordon': before: 5
+        'Holly Shuttleworth': before: 5
+        'Emily Webster': before: 5
+        'Pierre Estephan': before: 5
+        'Vinbob Tran': before: 5
 ,
     name: 'Consumer'
+    tags: [ 'musical' ]
     actors:
-        'Matthew McEwen': before: 2
-        'Daniel Lyons': before: 2
-        'Henry Nguyen': before: 2
-        'Nafiul Haque': before: 2
-        'Christina Truong': before: 2
-        'Octavia Soegyono': before: 2
-        'Sylvia Chin Rhi Gordon': before: 2
+        'Matthew McEwen': before: 5
+        'Daniel Lyons': before: 5
+        'Henry Nguyen': before: 5
+        'Nafiul Haque': before: 5
+        'Christina Truong': before: 5
+        'Octavia Soegyono': before: 5
+        'Sylvia Chin Rhi Gordon': before: 5
 ]
-
-# 'Z5MYqhbtTKvqgFZzGK27Aw==' 397
-# 'AzplBG3QfFtapOuCRTIp9g==' 397
-# 'cwfAhsosizuNVzzomyv15A==' 398
 
 Array.prototype.clone = -> @slice 0
 is_in_item = (person, item) -> item.actors[person]?
@@ -201,9 +226,12 @@ hash_object = (object) ->
     string = JSON.stringify(object)
     return crypto.createHash('md5').update(string).digest('base64')
 
+tag_weights =
+    musical: 2
+
 evaluators =
 
-    actors: (item, order, order_index) ->
+    preparation: (item, order, order_index) ->
 
         score = 0
 
@@ -221,6 +249,31 @@ evaluators =
             score += Math.min after, prep_time.after ? 0
 
         return score
+
+    genre_variation: (item, order, order_index) ->
+
+        score = 0
+
+        for tag in item.tags
+
+            before_index = order_index - 1
+            before_index-- while before_index >= 0 and not (tag in order[before_index].tags)
+            before = order_index - before_index - 1
+
+            after_index = order_index + 1
+            after_index++ while after_index < order.length and not (tag in order[after_index].tags)
+            after = after_index - order_index - 1
+
+            weight = tag_weights[tag] ? 1
+
+            score += before * weight
+            score += after * weight
+
+        return score
+
+weights =
+    preparation: 1
+    genre_variation: 1
 
 mutators = 
 
@@ -254,7 +307,7 @@ evaluate = (order) ->
 
     for name, evaluator of evaluators
         for item, index in order
-            score += evaluator(item, order, index)
+            score += weights[name] * evaluator(item, order, index)
 
     return score
 
@@ -273,7 +326,7 @@ score = evaluate(order)
 
 starting_temperature = 10000
 cooling_factor = 0.95
-repetitions = 100
+repetitions = 25
 bests = {}
 
 # How confident do we want to be that we've got an absolute local maximum?
